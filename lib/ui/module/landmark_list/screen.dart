@@ -9,6 +9,7 @@ class LandmarkListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: const Color(0xffFF7E6B),
         appBar: AppBar(
           title: const Text('Landmarks'),
         ),

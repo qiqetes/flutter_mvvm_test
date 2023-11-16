@@ -16,6 +16,14 @@ class LandmarkCard extends StatelessWidget {
           color: Colors.black,
           width: 1,
         ),
+        boxShadow: const [
+          BoxShadow(
+            color: Colors.black,
+            spreadRadius: 0,
+            blurRadius: 0,
+            offset: Offset(0, 2),
+          ),
+        ],
       ),
       padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
       child: Column(
@@ -100,7 +108,7 @@ class _FavPill extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 236, 192, 207),
+        color: const Color(0xffFFA69E),
         borderRadius: const BorderRadius.all(Radius.circular(200)),
         border: Border.all(
           color: Colors.black,
@@ -122,7 +130,7 @@ class _LocationPill extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color.fromARGB(255, 236, 192, 207),
+        color: const Color(0xffFFA69E),
         borderRadius: const BorderRadius.all(Radius.circular(200)),
         border: Border.all(
           color: Colors.black,
@@ -135,7 +143,7 @@ class _LocationPill extends StatelessWidget {
         children: [
           const Icon(Icons.location_on),
           const SizedBox(width: 5),
-          Text('$lat,  $long'),
+          Text('${lat.toStringAsFixed(4)},  ${long.toStringAsFixed(4)}'),
         ],
       ),
     );
