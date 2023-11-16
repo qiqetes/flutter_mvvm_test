@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_test/ui/module/landmark_list/view_model.dart';
 import 'package:mvvm_test/ui/module/landmark_list/widgets/landmarks_list.dart';
 
-class LandmarkScreen extends StatelessWidget {
-  const LandmarkScreen({super.key});
+class LandmarkListScreen extends StatelessWidget {
+  const LandmarkListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
