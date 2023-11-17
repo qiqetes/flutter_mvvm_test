@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_test/core/module/landmark/landmark.dart';
 import 'package:mvvm_test/core/module/landmark_detail/landmark_detail.dart';
 import 'package:mvvm_test/ui/module/landmark_detail/view_model.dart';
+import 'package:mvvm_test/ui/module/landmark_detail/widgets/landmark_detail_info.dart';
 
 class LandmarkDetailScreen extends StatelessWidget {
   const LandmarkDetailScreen({super.key, required this.landmark});
@@ -34,7 +35,7 @@ class _LandmarkDetailBody extends StatelessWidget {
         children: [
           _Thumbnail(landmarkDetail: landmarkDetail),
           const SizedBox(height: 15),
-          const Text("hay "),
+          LandmarkDetailInfo(landmarkDetail: landmarkDetail),
         ],
       ),
     );
@@ -50,12 +51,3 @@ class _Thumbnail extends StatelessWidget {
     return CachedNetworkImage(imageUrl: landmarkDetail.urlImagen);
   }
 }
-
-
-
-  // @override
-  // Widget build(BuildContext context, WidgetRef ref) {
-  //   var data = ref.watch(landmarkDetailProvider(landmark));
-
-  //   return Scaffold(body: Center(child: Text(data.descripcion.toString())));
-  // }

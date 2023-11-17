@@ -10,19 +10,19 @@ class LandmarkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Decoration outerDecoration = BoxDecoration(
-      color: Colors.white,
-      borderRadius: const BorderRadius.all(Radius.circular(20)),
-      border: Border.all(color: Colors.black, width: 1),
-      boxShadow: const [
-        BoxShadow(
-          color: Colors.black,
-          spreadRadius: 0,
-          blurRadius: 0,
-          offset: Offset(0, 2),
-        ),
-      ],
-    );
+    Decoration outerDecoration() => BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.all(Radius.circular(20)),
+          border: Border.all(color: Colors.black, width: 1),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black,
+              spreadRadius: 0,
+              blurRadius: 0,
+              offset: Offset(0, 2),
+            ),
+          ],
+        );
 
     return OpenContainer(
       closedShape:
@@ -31,7 +31,7 @@ class LandmarkCard extends StatelessWidget {
       closedBuilder: (_, openContainer) => InkWell(
         onTap: openContainer,
         child: Container(
-          decoration: outerDecoration,
+          decoration: outerDecoration(),
           padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -87,6 +87,9 @@ class _Thumbnail extends StatelessWidget {
         child: Stack(
           children: [
             CachedNetworkImage(
+              placeholder: (context, url) => const Center(
+                child: CircularProgressIndicator(),
+              ),
               imageUrl: landmark.urlImagen,
               width: double.infinity,
             ),
