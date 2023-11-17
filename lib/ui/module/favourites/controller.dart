@@ -32,7 +32,7 @@ class FavouritesVM extends _$FavouritesVM {
   List<Landmark> build() {
     var favouriteIds =
         ref.watch(favouritesControllerProvider).valueOrNull ?? [];
-    var landmarks = ref.watch(landmarkListVMProvider).valueOrNull ?? [];
+    var landmarks = ref.watch(homeVMProvider).valueOrNull ?? [];
     return landmarks
         .where((landmark) => favouriteIds.contains(landmark.idFicha))
         .toList();

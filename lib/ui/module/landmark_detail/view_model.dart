@@ -10,18 +10,18 @@ part 'view_model.g.dart';
 Future<LandmarkDetail> asyncLandmarkDetail(
     AsyncLandmarkDetailRef ref, Landmark landmark) async {
   final LandmarkRepository repository = ref.watch(landmarkRepositoryProvider);
-  return repository.fetchLandmarkDetail(landmark.idFicha);
+  final res = repository.fetchLandmarkDetail(landmark.idFicha);
+  return res;
 }
 
 @riverpod
 LandmarkDetail landmarkDetail(LandmarkDetailRef ref, Landmark landmark) {
   ref.listen(asyncLandmarkDetailProvider(landmark), (_, next) {
-    // TODO: refactor
-    if (next.hasValue) ref.state = next.requireValue;
-
-    if (next case AsyncValue(:final value?)) ref.state = value;
-
-    if (next.value case final value) ref.state = value!;
+    if (next is AsyncData<LandmarkDetail>) {
+      ref.state = next.value;
+      ref.keepAlive();
+    }
   });
+
   return LandmarkDetail.fromLandmark(landmark);
 }

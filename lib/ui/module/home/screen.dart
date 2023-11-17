@@ -9,29 +9,29 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xffFF7E6B),
-        appBar: AppBar(
-          title: const Text('Landmarks'),
-        ),
-        body: Consumer(
-          builder: (context, ref, child) {
-            final landmarks = ref.watch(landmarkListVMProvider);
+      backgroundColor: const Color(0xffFF7E6B),
+      appBar: AppBar(
+        title: const Text('Landmarks'),
+      ),
+      body: Consumer(
+        builder: (context, ref, child) {
+          final landmarks = ref.watch(homeVMProvider);
 
-            return LandmarksList(
-              landmarks: landmarks.valueOrNull ?? [],
-              emptyMessage: landmarks is AsyncError
-                  ? 'Error obteniendo los sitios destacados'
-                  : 'No se han encontrado sitios destacados',
-              isLoading: (landmarks is AsyncLoading),
-            );
-          },
-        ),
-        floatingActionButton: Consumer(
-          builder: (context, ref, child) => FloatingActionButton(
-            onPressed: () =>
-                ref.read(landmarkListVMProvider.notifier).refetchLandmarks(),
-            child: const Icon(Icons.add),
-          ),
-        ));
+          return LandmarksList(
+            landmarks: landmarks.valueOrNull ?? [],
+            emptyMessage: landmarks is AsyncError
+                ? 'Error obteniendo los sitios destacados'
+                : 'No se han encontrado sitios destacados',
+            isLoading: (landmarks is AsyncLoading),
+          );
+        },
+      ),
+      // floatingActionButton: Consumer(
+      //   builder: (context, ref, child) => FloatingActionButton(
+      //     onPressed: () =>
+      //         ref.read(landmarkListVMProvider.notifier).refetchLandmarks(),
+      //     child: const Icon(Icons.add),
+      //   ),
+    );
   }
 }

@@ -7,7 +7,7 @@ part of 'view_model.dart';
 // **************************************************************************
 
 String _$asyncLandmarkDetailHash() =>
-    r'664c35e1bb1d365a38942a689acebe782260e2f1';
+    r'1904e4629c0944efeba19d0401f8a95a4131fe03';
 
 /// Copied from Dart SDK
 class _SystemHash {
@@ -158,7 +158,7 @@ class _AsyncLandmarkDetailProviderElement
   Landmark get landmark => (origin as AsyncLandmarkDetailProvider).landmark;
 }
 
-String _$landmarkDetailHash() => r'b52854c2f873d486ee5dbc86f7dadcbaf67b9b39';
+String _$landmarkDetailHash() => r'dec9e817e45d22528f950385b87667023bef66dd';
 
 /// See also [landmarkDetail].
 @ProviderFor(landmarkDetail)

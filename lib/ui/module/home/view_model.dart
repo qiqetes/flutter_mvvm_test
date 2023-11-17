@@ -5,7 +5,16 @@ import 'package:riverpod_annotation/riverpod_annotation.dart';
 part 'view_model.g.dart';
 
 @riverpod
-class LandmarkListVM extends _$LandmarkListVM {
+class HomeVM extends _$HomeVM {
+  @override
+  AsyncValue<List<Landmark>> build() {
+    final foo = ref.watch(landmarkControllerProvider);
+    return foo;
+  }
+}
+
+@riverpod
+class LandmarkController extends _$LandmarkController {
   late final LandmarkRepository _repository;
 
   @override
@@ -15,7 +24,9 @@ class LandmarkListVM extends _$LandmarkListVM {
   }
 
   Future<List<Landmark>> _fetchLandmarks() async {
-    return await _repository.fetchLandmarks();
+    final res = await _repository.fetchLandmarks();
+    ref.keepAlive();
+    return res;
   }
 
   Future<void> refetchLandmarks() async {

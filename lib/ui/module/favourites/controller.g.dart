@@ -23,7 +23,7 @@ final favouritesControllerProvider =
 );
 
 typedef _$FavouritesController = AutoDisposeAsyncNotifier<List<int>>;
-String _$favouritesVMHash() => r'd7a29dab8761cc3406f212108fac4db3f410759f';
+String _$favouritesVMHash() => r'e75c10c30aa1df4b9e963042742719f2e332c693';
 
 /// See also [FavouritesVM].
 @ProviderFor(FavouritesVM)
