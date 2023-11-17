@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'ruta.freezed.dart';
+part 'ruta.g.dart';
 
 @freezed
 class Ruta with _$Ruta {

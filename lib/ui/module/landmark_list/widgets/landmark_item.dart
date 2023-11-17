@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mvvm_test/core/module/landmark/landmark.dart';
+import 'package:mvvm_test/ui/module/landmark_detail/screen.dart';
 
 class LandmarkCard extends StatelessWidget {
   const LandmarkCard({super.key, required this.landmark});
@@ -8,31 +9,37 @@ class LandmarkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: const BorderRadius.all(Radius.circular(15)),
-        border: Border.all(
-          color: Colors.black,
-          width: 1,
-        ),
-        boxShadow: const [
-          BoxShadow(
+    return InkWell(
+      onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (_) => LandmarkDetailScreen(landmark: landmark))),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: const BorderRadius.all(Radius.circular(15)),
+          border: Border.all(
             color: Colors.black,
-            spreadRadius: 0,
-            blurRadius: 0,
-            offset: Offset(0, 2),
+            width: 1,
           ),
-        ],
-      ),
-      padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _ThumbNail(landmark: landmark),
-          const SizedBox(height: 15),
-          _InfoText(landmark: landmark),
-        ],
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black,
+              spreadRadius: 0,
+              blurRadius: 0,
+              offset: Offset(0, 2),
+            ),
+          ],
+        ),
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _ThumbNail(landmark: landmark),
+            const SizedBox(height: 15),
+            _InfoText(landmark: landmark),
+          ],
+        ),
       ),
     );
   }
