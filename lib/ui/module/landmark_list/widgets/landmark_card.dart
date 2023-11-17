@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:mvvm_test/core/module/landmark/landmark.dart';
@@ -9,36 +10,37 @@ class LandmarkCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (_) => LandmarkDetailScreen(landmark: landmark))),
-      child: Container(
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: const BorderRadius.all(Radius.circular(15)),
-          border: Border.all(
-            color: Colors.black,
-            width: 1,
-          ),
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.black,
-              spreadRadius: 0,
-              blurRadius: 0,
-              offset: Offset(0, 2),
-            ),
-          ],
+    final Decoration outerDecoration = BoxDecoration(
+      color: Colors.white,
+      borderRadius: const BorderRadius.all(Radius.circular(20)),
+      border: Border.all(color: Colors.black, width: 1),
+      boxShadow: const [
+        BoxShadow(
+          color: Colors.black,
+          spreadRadius: 0,
+          blurRadius: 0,
+          offset: Offset(0, 2),
         ),
-        padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            _ThumbNail(landmark: landmark),
-            const SizedBox(height: 15),
-            _InfoText(landmark: landmark),
-          ],
+      ],
+    );
+
+    return OpenContainer(
+      closedShape:
+          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      openBuilder: (_, __) => LandmarkDetailScreen(landmark: landmark),
+      closedBuilder: (_, openContainer) => InkWell(
+        onTap: openContainer,
+        child: Container(
+          decoration: outerDecoration,
+          padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              _Thumbnail(landmark: landmark),
+              const SizedBox(height: 15),
+              _InfoText(landmark: landmark),
+            ],
+          ),
         ),
       ),
     );
@@ -65,8 +67,8 @@ class _InfoText extends StatelessWidget {
   }
 }
 
-class _ThumbNail extends StatelessWidget {
-  const _ThumbNail({required this.landmark});
+class _Thumbnail extends StatelessWidget {
+  const _Thumbnail({required this.landmark});
   final Landmark landmark;
 
   @override

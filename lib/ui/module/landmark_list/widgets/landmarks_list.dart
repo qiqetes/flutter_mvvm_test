@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_test/ui/module/landmark_list/view_model.dart';
-import 'package:mvvm_test/ui/module/landmark_list/widgets/landmark_item.dart';
+import 'package:mvvm_test/ui/module/landmark_list/widgets/landmark_card.dart';
 
 class LandmarksList extends ConsumerWidget {
   const LandmarksList({super.key});
