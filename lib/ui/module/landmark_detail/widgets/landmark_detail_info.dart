@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mvvm_test/core/module/landmark_detail/landmark_detail.dart';
+import 'package:mvvm_test/ui/module/landmark_detail/widgets/landmark_gallery.dart';
 
 class LandmarkDetailInfo extends StatelessWidget {
   const LandmarkDetailInfo({super.key, required this.landmarkDetail});
@@ -21,7 +22,10 @@ class LandmarkDetailInfo extends StatelessWidget {
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const SizedBox(height: 15),
-            if (fullyLoaded) Text(landmarkDetail.descripcion!)
+            if (fullyLoaded) Text(landmarkDetail.descripcion!),
+            const SizedBox(height: 25),
+            LandmarkGallery(imageUrls: landmarkDetail.media?.images ?? []),
+            const SizedBox(height: 25),
           ],
         ),
       ),
