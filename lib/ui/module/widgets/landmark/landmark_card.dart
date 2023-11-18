@@ -1,12 +1,15 @@
 import 'package:animations/animations.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:mvvm_test/core/module/favourites/service.dart';
 import 'package:mvvm_test/core/module/landmark/landmark.dart';
 import 'package:mvvm_test/ui/module/landmark_detail/screen.dart';
 
 class LandmarkCard extends StatelessWidget {
-  const LandmarkCard({super.key, required this.landmark});
+  const LandmarkCard({super.key, required this.landmark, this.fav = false});
   final Landmark landmark;
+  final bool fav;
 
   @override
   Widget build(BuildContext context) {
@@ -19,27 +22,34 @@ class LandmarkCard extends StatelessWidget {
               color: Colors.black,
               spreadRadius: 0,
               blurRadius: 0,
-              offset: Offset(0, 2),
+              offset: Offset(0, 3),
             ),
           ],
         );
 
     return OpenContainer(
-      closedShape:
-          RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      closedShape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+          side: const BorderSide(color: Colors.black, width: 1)),
       openBuilder: (_, __) => LandmarkDetailScreen(landmark: landmark),
       closedBuilder: (_, openContainer) => InkWell(
         onTap: openContainer,
-        child: Container(
-          decoration: outerDecoration(),
-          padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _Thumbnail(landmark: landmark),
-              const SizedBox(height: 15),
-              _InfoText(landmark: landmark),
-            ],
+        child: Padding(
+          padding: const EdgeInsets.only(bottom: 3),
+          child: Container(
+            decoration: outerDecoration(),
+            // color: Colors.amber,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 15),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _Thumbnail(landmark: landmark, fav: fav),
+                  const SizedBox(height: 15),
+                  _InfoText(landmark: landmark),
+                ],
+              ),
+            ),
           ),
         ),
       ),
@@ -68,8 +78,9 @@ class _InfoText extends StatelessWidget {
 }
 
 class _Thumbnail extends StatelessWidget {
-  const _Thumbnail({required this.landmark});
+  const _Thumbnail({required this.landmark, this.fav = false});
   final Landmark landmark;
+  final bool fav;
 
   @override
   Widget build(BuildContext context) {
@@ -93,10 +104,23 @@ class _Thumbnail extends StatelessWidget {
               imageUrl: landmark.urlImagen,
               width: double.infinity,
             ),
-            const Positioned(
-              top: 15,
-              right: 15,
-              child: _FavPill(),
+            Consumer(
+              // FIXME: pass parameter or use this consumer?
+              builder: (_, ref, __) {
+                final favourites =
+                    ref.watch(favouritesControllerProvider).value;
+                final isFav = favourites?.contains(landmark.idFicha) ?? false;
+
+                if (isFav) {
+                  return const Positioned(
+                    top: 15,
+                    right: 15,
+                    child: _FavPill(),
+                  );
+                } else {
+                  return const SizedBox();
+                }
+              },
             ),
             Positioned(
               bottom: 20,

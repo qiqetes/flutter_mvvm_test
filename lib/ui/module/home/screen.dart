@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_test/ui/module/home/view_model.dart';
 import 'package:mvvm_test/ui/module/widgets/landmark/landmarks_list.dart';
+import 'package:mvvm_test/ui/module/widgets/lateral_menu/lateral_menu.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -9,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffFF7E6B),
+      backgroundColor: const Color(0xffFEDE65),
       appBar: AppBar(
         title: const Text('Landmarks'),
       ),
@@ -26,6 +27,7 @@ class HomeScreen extends StatelessWidget {
           );
         },
       ),
+      drawer: const LateralMenu(currentPath: '/'),
       // floatingActionButton: Consumer(
       //   builder: (context, ref, child) => FloatingActionButton(
       //     onPressed: () =>

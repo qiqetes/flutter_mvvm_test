@@ -6,23 +6,6 @@ part of 'controller.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$favouritesControllerHash() =>
-    r'1673cd0010b9e7b7230769f93970dc92c4cfc8f7';
-
-/// See also [FavouritesController].
-@ProviderFor(FavouritesController)
-final favouritesControllerProvider =
-    AutoDisposeAsyncNotifierProvider<FavouritesController, List<int>>.internal(
-  FavouritesController.new,
-  name: r'favouritesControllerProvider',
-  debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
-      ? null
-      : _$favouritesControllerHash,
-  dependencies: null,
-  allTransitiveDependencies: null,
-);
-
-typedef _$FavouritesController = AutoDisposeAsyncNotifier<List<int>>;
 String _$favouritesVMHash() => r'e75c10c30aa1df4b9e963042742719f2e332c693';
 
 /// See also [FavouritesVM].
