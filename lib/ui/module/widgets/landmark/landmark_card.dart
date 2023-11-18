@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_test/core/module/favourites/service.dart';
 import 'package:mvvm_test/core/module/landmark/landmark.dart';
 import 'package:mvvm_test/ui/module/landmark_detail/screen.dart';
+import 'package:mvvm_test/ui/resources/theme.dart';
 
 class LandmarkCard extends StatelessWidget {
   const LandmarkCard({super.key, required this.landmark, this.fav = false});
@@ -82,11 +83,39 @@ class _Thumbnail extends StatelessWidget {
   final Landmark landmark;
   final bool fav;
 
+  Widget _buildImage() => CachedNetworkImage(
+        placeholder: (context, url) => const Center(
+          child: SizedBox(
+            height: 200,
+            child: Center(child: CircularProgressIndicator()),
+          ),
+        ),
+        imageUrl: landmark.urlImagen,
+        width: double.infinity,
+      );
+
+  Widget _buildFavPill() => Consumer(
+        // FIXME: pass parameter or use this consumer?
+        builder: (_, ref, __) {
+          final favourites = ref.watch(favouritesControllerProvider).value;
+          final isFav = favourites?.contains(landmark.idFicha) ?? false;
+
+          if (isFav) {
+            return const Positioned(
+              top: 15,
+              right: 15,
+              child: _FavPill(),
+            );
+          } else {
+            return const SizedBox();
+          }
+        },
+      );
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: Colors.red,
         borderRadius: const BorderRadius.all(Radius.circular(12)),
         border: Border.all(
           color: Colors.black,
@@ -97,31 +126,8 @@ class _Thumbnail extends StatelessWidget {
         borderRadius: const BorderRadius.all(Radius.circular(12)),
         child: Stack(
           children: [
-            CachedNetworkImage(
-              placeholder: (context, url) => const Center(
-                child: CircularProgressIndicator(),
-              ),
-              imageUrl: landmark.urlImagen,
-              width: double.infinity,
-            ),
-            Consumer(
-              // FIXME: pass parameter or use this consumer?
-              builder: (_, ref, __) {
-                final favourites =
-                    ref.watch(favouritesControllerProvider).value;
-                final isFav = favourites?.contains(landmark.idFicha) ?? false;
-
-                if (isFav) {
-                  return const Positioned(
-                    top: 15,
-                    right: 15,
-                    child: _FavPill(),
-                  );
-                } else {
-                  return const SizedBox();
-                }
-              },
-            ),
+            _buildImage(),
+            _buildFavPill(),
             Positioned(
               bottom: 20,
               left: 20,
@@ -144,7 +150,7 @@ class _FavPill extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xffFFA69E),
+        color: kRedColor,
         borderRadius: const BorderRadius.all(Radius.circular(200)),
         border: Border.all(
           color: Colors.black,
@@ -166,7 +172,7 @@ class _LocationPill extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        color: const Color(0xffFFA69E),
+        color: kYellowColor,
         borderRadius: const BorderRadius.all(Radius.circular(200)),
         border: Border.all(
           color: Colors.black,
@@ -179,7 +185,10 @@ class _LocationPill extends StatelessWidget {
         children: [
           const Icon(Icons.location_on),
           const SizedBox(width: 5),
-          Text('${lat.toStringAsFixed(4)},  ${long.toStringAsFixed(4)}'),
+          Text(
+            '${lat.toStringAsFixed(4)},  ${long.toStringAsFixed(4)}',
+            style: const TextStyle(fontWeight: FontWeight.w700),
+          ),
         ],
       ),
     );

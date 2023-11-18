@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_test/ui/module/favourites/controller.dart';
-import 'package:mvvm_test/ui/module/home/view_model.dart';
 import 'package:mvvm_test/ui/module/widgets/landmark/landmarks_list.dart';
 import 'package:mvvm_test/ui/module/widgets/lateral_menu/lateral_menu.dart';
 
@@ -13,7 +10,6 @@ class FavouritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffFEDE65),
       appBar: AppBar(
         title: const Text('Tus Favoritos'),
       ),
@@ -24,7 +20,7 @@ class FavouritesScreen extends StatelessWidget {
           return LandmarksList(
             landmarks: landmarks,
             emptyMessage:
-                'No has añadido ningún sitio a favoritos, León es muy bonito, algo te tendrá que gustar',
+                'No has añadido ningún sitio a favoritos, León es muy bonito, algo te tendrá que gustar...',
           );
         },
       ),

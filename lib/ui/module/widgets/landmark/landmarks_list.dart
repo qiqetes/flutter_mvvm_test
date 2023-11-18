@@ -21,7 +21,9 @@ class LandmarksList extends StatelessWidget {
       return const Center(child: CircularProgressIndicator());
     }
     if (landmarks.isEmpty) {
-      return Center(child: Text(emptyMessage));
+      return Padding(
+          padding: const EdgeInsets.all(15),
+          child: Center(child: Text(emptyMessage)));
     } else {
       return ListView.separated(
         separatorBuilder: (_, __) => const SizedBox(height: 10),

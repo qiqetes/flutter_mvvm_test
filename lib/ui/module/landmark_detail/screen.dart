@@ -16,6 +16,7 @@ class LandmarkDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       drawer: const LateralMenu(currentPath: '/landmark_detail'),
       appBar: AppBar(title: Text(landmark.nombre)),
       body: Consumer(
@@ -55,7 +56,12 @@ class _Thumbnail extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(imageUrl: landmarkDetail.urlImagen);
+    return Container(
+      decoration: const ShapeDecoration(
+        shape: Border(bottom: BorderSide(color: Colors.black, width: 1)),
+      ),
+      child: CachedNetworkImage(imageUrl: landmarkDetail.urlImagen),
+    );
   }
 }
 
