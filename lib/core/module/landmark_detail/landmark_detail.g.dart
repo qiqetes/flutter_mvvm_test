@@ -13,7 +13,7 @@ _$LandmarkDetailsImpl _$$LandmarkDetailsImplFromJson(
       idFicha: json['idFicha'] as int,
       nombre: json['nombre'] as String,
       descripcionCorta: json['descripcionCorta'] as String,
-      descripcion: json['descripcion'] as String?,
+      descripcion: _descriptionConverter(json['descripcion'] as String?),
       fechaInicio: json['fechaInicio'] as String?,
       horaInicio: json['horaInicio'] as String?,
       fechaFin: json['fechaFin'] as String?,

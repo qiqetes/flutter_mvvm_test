@@ -1,12 +1,19 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 part 'service.g.dart';
 
 @riverpod
 class FavouritesController extends _$FavouritesController {
   Future<List<int>> _getLocalFavourites() async {
-    await Future<void>.delayed(const Duration(seconds: 2));
-    return [126];
+    final sharedPrefs = await SharedPreferences.getInstance();
+    final List<String> favourites =
+        sharedPrefs.getStringList('favouriteLandmarks') ?? [];
+    try {
+      return favourites.map((e) => int.parse(e)).toList();
+    } catch (e) {
+      return [];
+    }
   }
 
   @override
@@ -27,5 +34,12 @@ class FavouritesController extends _$FavouritesController {
       favourites.add(landmarkId);
     }
     state = AsyncData(favourites);
+    _saveLocalFavourites(favourites);
+  }
+
+  Future<void> _saveLocalFavourites(List<int> favourites) async {
+    final sharedPrefs = await SharedPreferences.getInstance();
+    await sharedPrefs.setStringList(
+        'favouriteLandmarks', favourites.map((e) => e.toString()).toList());
   }
 }

@@ -3,7 +3,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_test/ui/module/home/view_model.dart';
 import 'package:mvvm_test/ui/module/widgets/landmark/landmarks_list.dart';
 import 'package:mvvm_test/ui/module/widgets/lateral_menu/lateral_menu.dart';
-import 'package:mvvm_test/ui/resources/theme.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

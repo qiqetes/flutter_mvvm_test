@@ -9,6 +9,8 @@ class LandmarkGallery extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // GalleryImage widget cannot be empty
+    if (imageUrls.isEmpty) return const SizedBox.shrink();
     // TODO: ugly, maybe use diff package
     return GalleryImage(
       showAppBar: true,

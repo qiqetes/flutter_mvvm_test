@@ -13,6 +13,8 @@ class LandmarkDetail with _$LandmarkDetail {
     required int idFicha,
     required String nombre,
     required String descripcionCorta,
+    // ignore: invalid_annotation_target
+    @JsonKey(name: "descripcion", fromJson: _descriptionConverter)
     String? descripcion,
     String? fechaInicio,
     String? horaInicio,
@@ -46,4 +48,10 @@ class LandmarkDetail with _$LandmarkDetail {
 
   factory LandmarkDetail.fromJson(Map<String, dynamic> json) =>
       _$LandmarkDetailFromJson(json);
+}
+
+String? _descriptionConverter(String? raw) {
+  if (raw == null || raw.isEmpty) return null;
+
+  return raw.replaceAll("<br />", "\n");
 }

@@ -23,7 +23,9 @@ mixin _$LandmarkDetail {
   int? get idDetalle => throw _privateConstructorUsedError;
   int get idFicha => throw _privateConstructorUsedError;
   String get nombre => throw _privateConstructorUsedError;
-  String get descripcionCorta => throw _privateConstructorUsedError;
+  String get descripcionCorta =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(name: "descripcion", fromJson: _descriptionConverter)
   String? get descripcion => throw _privateConstructorUsedError;
   String? get fechaInicio => throw _privateConstructorUsedError;
   String? get horaInicio => throw _privateConstructorUsedError;
@@ -58,6 +60,7 @@ abstract class $LandmarkDetailCopyWith<$Res> {
       int idFicha,
       String nombre,
       String descripcionCorta,
+      @JsonKey(name: "descripcion", fromJson: _descriptionConverter)
       String? descripcion,
       String? fechaInicio,
       String? horaInicio,
@@ -222,6 +225,7 @@ abstract class _$$LandmarkDetailsImplCopyWith<$Res>
       int idFicha,
       String nombre,
       String descripcionCorta,
+      @JsonKey(name: "descripcion", fromJson: _descriptionConverter)
       String? descripcion,
       String? fechaInicio,
       String? horaInicio,
@@ -368,6 +372,7 @@ class _$LandmarkDetailsImpl implements _LandmarkDetails {
       required this.idFicha,
       required this.nombre,
       required this.descripcionCorta,
+      @JsonKey(name: "descripcion", fromJson: _descriptionConverter)
       this.descripcion,
       this.fechaInicio,
       this.horaInicio,
@@ -397,7 +402,9 @@ class _$LandmarkDetailsImpl implements _LandmarkDetails {
   final String nombre;
   @override
   final String descripcionCorta;
+// ignore: invalid_annotation_target
   @override
+  @JsonKey(name: "descripcion", fromJson: _descriptionConverter)
   final String? descripcion;
   @override
   final String? fechaInicio;
@@ -529,6 +536,7 @@ abstract class _LandmarkDetails implements LandmarkDetail {
       required final int idFicha,
       required final String nombre,
       required final String descripcionCorta,
+      @JsonKey(name: "descripcion", fromJson: _descriptionConverter)
       final String? descripcion,
       final String? fechaInicio,
       final String? horaInicio,
@@ -557,7 +565,8 @@ abstract class _LandmarkDetails implements LandmarkDetail {
   String get nombre;
   @override
   String get descripcionCorta;
-  @override
+  @override // ignore: invalid_annotation_target
+  @JsonKey(name: "descripcion", fromJson: _descriptionConverter)
   String? get descripcion;
   @override
   String? get fechaInicio;

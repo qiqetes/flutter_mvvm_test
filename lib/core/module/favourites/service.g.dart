@@ -7,7 +7,7 @@ part of 'service.dart';
 // **************************************************************************
 
 String _$favouritesControllerHash() =>
-    r'089395e572025de29f7100805de82c5594cca1a9';
+    r'e4759b70ab75fd5f589a6829315796989f76175f';
 
 /// See also [FavouritesController].
 @ProviderFor(FavouritesController)

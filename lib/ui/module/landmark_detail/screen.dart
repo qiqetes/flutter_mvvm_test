@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:mvvm_test/core/module/favourites/service.dart';
 import 'package:mvvm_test/core/module/landmark/landmark.dart';
 import 'package:mvvm_test/core/module/landmark_detail/landmark_detail.dart';
-import 'package:mvvm_test/ui/module/favourites/controller.dart';
 import 'package:mvvm_test/ui/module/landmark_detail/view_model.dart';
 import 'package:mvvm_test/ui/module/landmark_detail/widgets/landmark_detail_info.dart';
 import 'package:mvvm_test/ui/module/widgets/lateral_menu/lateral_menu.dart';
